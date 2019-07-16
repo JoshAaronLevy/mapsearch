@@ -159,8 +159,17 @@ Navigation
 Map
 ------------------------------------*/
 
-.map {
+.map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 710px;
+}
+
+.map {
+  height: 600px;
+  width: 800px;
 }
 
 /*------------------------------------
