@@ -15,7 +15,6 @@ body {
   color: #555;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -moz-font-feature-settings: "liga", "kern";
   text-rendering: optimizelegibility;
   background-color: #fff;
 }
@@ -114,11 +113,11 @@ Buttons
 ------------------------------------*/
 
 .btn-primary {
-  border: 0px !important;
+  border: 0px;
 }
 
 .btn-primary:hover {
-  border: 0px !important;
+  border: 0px;
 }
 
 /*------------------------------------
@@ -140,13 +139,6 @@ Navigation
   min-width: 30%;
 }
 
-.fa-film {
-  display: inline-flex !important;
-  align-items: center;
-  font-size: 52px;
-  color: #222 !important;
-}
-
 .logo a {
   font-size: 58px;
   font-family: 'Bangers', cursive;
@@ -163,73 +155,11 @@ Navigation
   text-decoration: none;
 }
 
-.main-nav {
-  display: flex;
-  min-width: 70%;
-  justify-content: flex-end;
-}
-
-.navbar-list {
-  justify-content: space-around;
-}
-
-.main-nav ul {
-  display: flex;
-  font-size: 20px;
-  align-items: stretch;
-  margin-right: 100px;
-  margin-bottom: 0px;
-  margin-top: 0px;
-  height: 100px;
-}
-
-.main-nav ul li {
-  display: flex;
-  list-style-type: none;
-  align-items: stretch;
-}
-
-.main-nav ul li a {
-  display: flex;
-  align-items: center;
-  padding-left: 15px;
-  padding-right: 15px;
-  color: #222;
-  text-decoration: none;
-  font-weight: 700;
-  -webkit-transition: color, background-color, 500ms;
-  transition: color, background-color, 500ms;
-}
-
-.main-nav ul li a:hover {
-  background-color: #AE0001;
-  color: #fff;
-  text-decoration: none;
-}
-
-.main-nav ul li a:active {
-  background-color: #AE0001;
-  color: #fff;
-  text-decoration: none;
-}
-
-.main-nav ul li a.active {
-  background-color: #AE0001;
-  color: #fff;
-  text-decoration: none;
-}
-
-.main-nav ul li a:focus {
-  background-color: #AE0001;
-  color: #fff;
-  text-decoration: none;
-}
-
 /*------------------------------------
 Map
 ------------------------------------*/
 
-#map {
+.map {
   height: 710px;
 }
 
