@@ -1,0 +1,260 @@
+/*------------------------------------
+  Default Styles
+------------------------------------*/
+
+html {
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: "Lato", sans-serif;
+  line-height: 1.6;
+  color: #555;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga", "kern";
+  text-rendering: optimizelegibility;
+  background-color: #fff;
+}
+
+a {
+  color: #AE0001;
+  outline: none;
+}
+
+a:focus,
+a:hover {
+  color: #AE0001;
+}
+
+p {
+  font-size: 18px;
+}
+
+.center {
+  text-align: center;
+}
+
+.underline {
+  border-bottom: 2px solid #222;
+}
+
+.ib {
+  display: inline-block;
+}
+
+.container {
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/*------------------------------------
+Headings
+------------------------------------*/
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.h7,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7 {
+  font-weight: 700;
+}
+
+h1,
+.h1 {
+  font-size: 28px;
+}
+
+h2,
+.h2 {
+  font-size: 26px;
+}
+
+h3,
+.h3 {
+  font-size: 24px;
+}
+
+h4,
+.h4 {
+  font-size: 22px;
+}
+
+h5,
+.h5 {
+  font-size: 20px;
+}
+
+h6,
+.h6 {
+  font-size: 18px;
+}
+
+h7,
+.h7 {
+  font-size: 16px;
+}
+
+/*------------------------------------
+Buttons
+------------------------------------*/
+
+.btn-primary {
+  border: 0px !important;
+}
+
+.btn-primary:hover {
+  border: 0px !important;
+}
+
+/*------------------------------------
+Navigation
+------------------------------------*/
+
+.navbar {
+  display: flex;
+  width: 100%;
+  min-height: 100px;
+  background-color: #FFFFFF;
+  box-shadow: 2px 2px 1px #333;
+}
+
+.logo {
+  display: flex;
+  align-items: stretch;
+  padding-left: 100px;
+  min-width: 30%;
+}
+
+.fa-film {
+  display: inline-flex !important;
+  align-items: center;
+  font-size: 52px;
+  color: #222 !important;
+}
+
+.logo a {
+  font-size: 58px;
+  font-family: 'Bangers', cursive;
+  color: #AE0001;
+}
+
+.logo .h1:hover {
+  color: #444;
+  text-decoration: none;
+}
+
+.logo a:hover {
+  color: #444;
+  text-decoration: none;
+}
+
+.main-nav {
+  display: flex;
+  min-width: 70%;
+  justify-content: flex-end;
+}
+
+.navbar-list {
+  justify-content: space-around;
+}
+
+.main-nav ul {
+  display: flex;
+  font-size: 20px;
+  align-items: stretch;
+  margin-right: 100px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  height: 100px;
+}
+
+.main-nav ul li {
+  display: flex;
+  list-style-type: none;
+  align-items: stretch;
+}
+
+.main-nav ul li a {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #222;
+  text-decoration: none;
+  font-weight: 700;
+  -webkit-transition: color, background-color, 500ms;
+  transition: color, background-color, 500ms;
+}
+
+.main-nav ul li a:hover {
+  background-color: #AE0001;
+  color: #fff;
+  text-decoration: none;
+}
+
+.main-nav ul li a:active {
+  background-color: #AE0001;
+  color: #fff;
+  text-decoration: none;
+}
+
+.main-nav ul li a.active {
+  background-color: #AE0001;
+  color: #fff;
+  text-decoration: none;
+}
+
+.main-nav ul li a:focus {
+  background-color: #AE0001;
+  color: #fff;
+  text-decoration: none;
+}
+
+/*------------------------------------
+Map
+------------------------------------*/
+
+#mapid {
+  height: 300px;
+}
+
+/*------------------------------------
+Footer
+------------------------------------*/
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #222;
+  padding-left: 100px;
+  padding-right: 100px;
+  align-items: stretch;
+  height: 90px;
+}
+
+.footer-copy {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+p.footer-copy {
+  font-size: 16px;
+  color: #fff;
+  align-self: center;
+  margin-bottom: 0px;
+}
