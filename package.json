@@ -1,13 +1,13 @@
 {
   "name": "mapsearch",
   "version": "1.0.0",
-  "description": "",
+  "description": "Map Search",
   "main": "index.js",
   "scripts": {
+    "start": "lite-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Josh Levy",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.3.1",
