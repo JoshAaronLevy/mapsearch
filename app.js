@@ -5,8 +5,20 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-var options = {
-  position: 'topright',
+var editableLayers = new L.FeatureGroup();
+map.addLayer(editableLayers);
+
+var MyCustomMarker = L.Icon.extend({
+  options: {
+    shadowUrl: null,
+    iconAnchor: new L.Point(12, 12),
+    iconSize: new L.Point(24, 24),
+    iconUrl: 'link/to/image.png'
+  }
+});
+
+var drawControl = new L.Control.Draw({
+  position: 'topleft',
   draw: {
     polyline: false,
     polygon: false,
@@ -20,16 +32,14 @@ var options = {
     marker: false
   },
   edit: false
-};
-
-var drawControl = new L.Control.Draw(options);
+});
 map.addControl(drawControl);
 
 map.on(L.Draw.Event.CREATED, function(e) {
   var type = e.layerType,
     layer = e.layer;
-
   if (type === 'marker') {
-    layer.bindPopup('A popup!');
+    layer.bindPopup('Marker');
   }
+  editableLayers.addLayer(layer);
 });
