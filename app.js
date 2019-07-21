@@ -35,6 +35,10 @@ let drawControl = new L.Control.Draw({
 });
 map.addControl(drawControl);
 
+map.on(L.Draw.Event, function(e) {
+  
+})
+
 map.on(L.Draw.Event.CREATED, function(e) {
   let type = e.layerType,
     layer = e.layer;
@@ -45,9 +49,7 @@ map.on(L.Draw.Event.CREATED, function(e) {
 });
 
 let beginDraw = new L.Control.Coordinates()
-
 beginDraw.addTo(map);
-
 map.on('mousedown', function(e) {
   beginDraw.setCoordinates(e);
   console.log('Beginning coordinates:')
@@ -55,9 +57,7 @@ map.on('mousedown', function(e) {
 });
 
 let endDraw = new L.Control.Coordinates()
-
 endDraw.addTo(map);
-
 map.on('mouseup', function(e) {
   endDraw.setCoordinates(e);
   console.log('Ending coordinates:')
