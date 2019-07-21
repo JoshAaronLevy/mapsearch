@@ -39,14 +39,16 @@ let drawControl = new L.Control.Draw({
 });
 map.addControl(drawControl);
 
+let coordArr = []
+
 let searchArea = {
-  start: {
+  southwest: {
     lat: null,
     long: null
   },
-  end: {
+  northeast: {
     lat: null,
-    long: null
+    lng: null
   }
 }
 
@@ -57,20 +59,22 @@ map.on(L.Draw.Event.CREATED, function(e) {
     layer.bindPopup('Marker');
   }
   editableLayers.addLayer(layer);
+  searchArea.northeast.lat = layer._bounds._northEast.lat
+  searchArea.northeast.lng = layer._bounds._northEast.lng
+  searchArea.southwest.lat = layer._bounds._southWest.lat
+  searchArea.southwest.lng = layer._bounds._southWest.lng
+  console.log(searchArea)
+  return searchArea
 });
 
 let beginDraw = new L.Control.Coordinates()
 beginDraw.addTo(map);
 map.on('mousedown', function(e) {
   beginDraw.setCoordinates(e);
-  console.log('Beginning coordinates:')
-  console.log(e.latlng.lat, e.latlng.lng)
 });
 
 let endDraw = new L.Control.Coordinates()
 endDraw.addTo(map);
 map.on('mouseup', function(e) {
   endDraw.setCoordinates(e);
-  console.log('Ending coordinates:')
-  console.log(e.latlng.lat, e.latlng.lng)
 });
