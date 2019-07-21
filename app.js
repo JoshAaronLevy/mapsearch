@@ -6,7 +6,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 var options = {
-  position: 'topleft',
+  position: 'topright',
   draw: {
     polyline: false,
     polygon: false,
