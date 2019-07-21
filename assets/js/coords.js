@@ -48,7 +48,6 @@ L.Control.Coordinates = L.Control.extend({
       },
       this
     );
-
     return container;
   },
 
@@ -63,30 +62,10 @@ L.Control.Coordinates = L.Control.extend({
         'leaflet-control-coordinates-lng',
         container
       ));
-
     return container;
   },
 
-  /**
-   * This method should be called when user clicks the map.
-   * @param event object
-   */
   setCoordinates: function(obj) {
-    if (!this.visible) {
-      L.DomUtil.removeClass(this._container, 'hidden');
-    }
-
-    if (obj.latlng) {
-      L.DomUtil.get(this._lat).innerHTML =
-        '<strong>' +
-        this.options.latitudeText +
-        ':</strong> ' +
-        obj.latlng.lat.toFixed(this.options.precision).toString();
-      L.DomUtil.get(this._lng).innerHTML =
-        '<strong>' +
-        this.options.longitudeText +
-        ':</strong> ' +
-        obj.latlng.lng.toFixed(this.options.precision).toString();
-    }
+    return obj
   }
 });
