@@ -31,13 +31,24 @@ let drawControl = new L.Control.Draw({
     },
     marker: false
   },
-  edit: false
+  edit: {
+    featureGroup: editableLayers,
+    edit: false,
+    save: false
+  }
 });
 map.addControl(drawControl);
 
-map.on(L.Draw.Event, function(e) {
-  
-})
+let searchArea = {
+  start: {
+    lat: null,
+    long: null
+  },
+  end: {
+    lat: null,
+    long: null
+  }
+}
 
 map.on(L.Draw.Event.CREATED, function(e) {
   let type = e.layerType,
