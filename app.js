@@ -1,5 +1,14 @@
 const home = [39.759541, -104.999107];
+const work = [39.760000, -104.999200];
 let map = L.map('map').setView(home, 17);
+// L.marker(home)
+//   .bindPopup(home.toString())
+//   .openPopup()
+//   .addTo(map);
+// L.marker(work)
+//   .bindPopup(work.toString())
+//   .openPopup()
+//   .addTo(map);
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   attribution:
     '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -39,16 +48,35 @@ let drawControl = new L.Control.Draw({
 });
 map.addControl(drawControl);
 
+let listings = [
+  {
+    id: 1,
+    addr: '123 Main St',
+    lat: 39.759541,
+    long: -104.999107
+  },
+  {
+    id: 2,
+    addr: '987 Main St',
+    lat: 39.765000,
+    long: -104.998200
+  }
+]
+
+let filteredListings = []
+
 let coordArr = []
 
+let markerArr = []
+
 let searchArea = {
-  southwest: {
-    lat: null,
-    long: null
+  lat: {
+    west: null,
+    east: null
   },
-  northeast: {
-    lat: null,
-    lng: null
+  long: {
+    north: null,
+    south: null
   }
 }
 
@@ -59,13 +87,29 @@ map.on(L.Draw.Event.CREATED, function(e) {
     layer.bindPopup('Marker');
   }
   editableLayers.addLayer(layer);
-  searchArea.northeast.lat = layer._bounds._northEast.lat
-  searchArea.northeast.lng = layer._bounds._northEast.lng
-  searchArea.southwest.lat = layer._bounds._southWest.lat
-  searchArea.southwest.lng = layer._bounds._southWest.lng
+  searchArea.lat.west = layer._bounds._southWest.lat
+  searchArea.lat.east = layer._bounds._northEast.lat
+  searchArea.long.north = layer._bounds._northEast.lng
+  searchArea.long.south = layer._bounds._southWest.lng
   console.log(searchArea)
+  filterResults()
   return searchArea
 });
+
+function filterResults() {
+  console.log(filteredListings)
+  for (let i = 0; i < listings.length; i++) {
+    if ((listings[i].lat > searchArea.lat.west && listings[i].lat < searchArea.lat.east) && (listings[i].long < searchArea.long.north && listings[i].long > searchArea.long.south)) {
+      filteredListings.push(listings[i])
+      markerArr.push(listings[i].lat, listings[i].long)
+      L.marker(markerArr)
+        .bindPopup(listings[i].addr)
+        .openPopup()
+        .addTo(map);
+    }
+  }
+  console.log(filteredListings)
+}
 
 let beginDraw = new L.Control.Coordinates()
 beginDraw.addTo(map);
