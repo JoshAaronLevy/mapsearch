@@ -94,20 +94,20 @@ let searchArea = {
   }
 }
 
-map.on(L.Draw.Event.CREATED, function(e) {
-  let type = e.layerType,
-  layer = e.layer;
+map.on(L.Draw.Event.CREATED, (e => {
+  let type = e.layerType;
+  let layer = e.layer;
   if (type === 'marker') {
     layer.bindPopup('Marker');
   }
   editableLayers.removeLayer(layer);
   editableLayers.addLayer(layer);
-  searchArea.lat.west = layer._bounds._southWest.lat
-  searchArea.lat.east = layer._bounds._northEast.lat
-  searchArea.lon.north = layer._bounds._northEast.lng
-  searchArea.lon.south = layer._bounds._southWest.lng
-  filterResults()
-});
+  searchArea.lat.west = layer._bounds._southWest.lat;
+  searchArea.lat.east = layer._bounds._northEast.lat;
+  searchArea.lon.north = layer._bounds._northEast.lng;
+  searchArea.lon.south = layer._bounds._southWest.lng;
+  filterResults();
+}));
 
 function filterResults() {
   for (let i = 0; i < listings.length; i++) {
@@ -122,14 +122,14 @@ function filterResults() {
   }
 }
 
-let beginDraw = new L.Control.Coordinates()
+let beginDraw = new L.Control.Coordinates();
 beginDraw.addTo(map);
-map.on('mousedown', function(e) {
+map.on('mousedown', (e => {
   beginDraw.setCoordinates(e);
-});
+}));
 
-let endDraw = new L.Control.Coordinates()
+let endDraw = new L.Control.Coordinates();
 endDraw.addTo(map);
-map.on('mouseup', function(e) {
+map.on('mouseup', (e => {
   endDraw.setCoordinates(e);
-});
+}));
