@@ -1,14 +1,6 @@
 const home = [39.759541, -104.999107];
 const work = [39.760000, -104.999200];
 let map = L.map('map').setView(home, 17);
-// L.marker(home)
-//   .bindPopup(home.toString())
-//   .openPopup()
-//   .addTo(map);
-// L.marker(work)
-//   .bindPopup(work.toString())
-//   .openPopup()
-//   .addTo(map);
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   attribution:
     '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -51,30 +43,52 @@ map.addControl(drawControl);
 let listings = [
   {
     id: 1,
-    addr: '123 Main St',
-    lat: 39.759541,
-    long: -104.999107
+    address: [
+      {
+        street: '123 Main St',
+        city: 'Denver',
+        state: 'CO',
+        zip: 80202
+      }
+    ],
+    img: 'https://vo-mapsearch.s3-us-west-2.amazonaws.com/house-1.png',
+    beds: 3,
+    baths: 4,
+    sqft: 4500,
+    price: 1000000,
+    remarks: 'This house is nice!',
+    lat: 39.760000,
+    lon: -104.998200
   },
   {
     id: 2,
-    addr: '987 Main St',
-    lat: 39.765000,
-    long: -104.998200
+    address: [
+      {
+        street: '987 Main Blvd',
+        city: 'Denver',
+        state: 'CO',
+        zip: 80202
+      }
+    ],
+    img: 'https://vo-mapsearch.s3-us-west-2.amazonaws.com/house-2.png',
+    beds: 4,
+    baths: 5,
+    sqft: 5750,
+    price: 2000000,
+    remarks: 'Wow, what an awesome house!',
+    lat: 39.759541,
+    lon: -104.999107
   }
 ]
 
 let filteredListings = []
-
-let coordArr = []
-
-let markerArr = []
 
 let searchArea = {
   lat: {
     west: null,
     east: null
   },
-  long: {
+  lon: {
     north: null,
     south: null
   }
@@ -82,33 +96,31 @@ let searchArea = {
 
 map.on(L.Draw.Event.CREATED, function(e) {
   let type = e.layerType,
-    layer = e.layer;
+  layer = e.layer;
   if (type === 'marker') {
     layer.bindPopup('Marker');
   }
+  editableLayers.removeLayer(layer);
   editableLayers.addLayer(layer);
   searchArea.lat.west = layer._bounds._southWest.lat
   searchArea.lat.east = layer._bounds._northEast.lat
-  searchArea.long.north = layer._bounds._northEast.lng
-  searchArea.long.south = layer._bounds._southWest.lng
-  console.log(searchArea)
+  searchArea.lon.north = layer._bounds._northEast.lng
+  searchArea.lon.south = layer._bounds._southWest.lng
   filterResults()
-  return searchArea
 });
 
 function filterResults() {
-  console.log(filteredListings)
   for (let i = 0; i < listings.length; i++) {
-    if ((listings[i].lat > searchArea.lat.west && listings[i].lat < searchArea.lat.east) && (listings[i].long < searchArea.long.north && listings[i].long > searchArea.long.south)) {
+    if ((listings[i].lat > searchArea.lat.west && listings[i].lat < searchArea.lat.east) && (listings[i].lon < searchArea.lon.north && listings[i].lon > searchArea.lon.south)) {
       filteredListings.push(listings[i])
-      markerArr.push(listings[i].lat, listings[i].long)
-      L.marker(markerArr)
-        .bindPopup(listings[i].addr)
+      let markerPosition = [listings[i].lat, listings[i].lon]
+      console.log(listings[i].address[0].street)
+      L.marker(markerPosition)
+        .bindPopup(listings[i].address[0].street)
         .openPopup()
-        .addTo(map);
+        .addTo(map)
     }
   }
-  console.log(filteredListings)
 }
 
 let beginDraw = new L.Control.Coordinates()
