@@ -217,3 +217,18 @@ Coordinate Log
 .leaflet-control-coordinates-lng {
 	padding-left: 5px;
 }
+
+.flex-view {
+  display: flex;
+  /* align-items: center; */
+}
+
+.card {
+  display: flex;
+  margin-top: 50px;
+  flex-direction: row !important;
+}
+
+.card img {
+  width: 33% !important;
+}
