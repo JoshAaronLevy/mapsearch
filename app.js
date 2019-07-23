@@ -114,7 +114,6 @@ function filterResults() {
     if ((listings[i].lat > searchArea.lat.west && listings[i].lat < searchArea.lat.east) && (listings[i].lon < searchArea.lon.north && listings[i].lon > searchArea.lon.south)) {
       filteredListings.push(listings[i])
       let markerPosition = [listings[i].lat, listings[i].lon]
-      console.log(listings[i].address[0].street)
       L.marker(markerPosition)
         .bindPopup(listings[i].address[0].street)
         .openPopup()
