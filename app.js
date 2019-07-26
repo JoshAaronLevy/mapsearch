@@ -132,23 +132,31 @@ function filterResults() {
         .addTo(map)
       let listing = listings[i]
       getListingDetails(listing)
-      // const $address = document.getElementById('address')
-      // $address.innerText = listings[i].address[0].street;
-      // console.log($address.innerText)
     }
   }
 }
 
 function getListingDetails(listing) {
   const $li = document.createElement('li');
+  $li.classList.add('card');
+  const $cardImage = [
+    getImage(listing.img)
+  ].forEach($element => $li.appendChild($element));
+  document.querySelector('#listings').appendChild($li);
+  createBlock(listing);
+}
+
+function createBlock(listing) {
+  const $card = document.createElement('div');
   const $elements = [
-    getImage(listing.img),
     getAddress(listing.address[0].street),
     getBeds(listing.beds),
     getBaths(listing.baths),
     getPrice(listing.price)
-  ].forEach($element => $li.appendChild($element));
-  document.querySelector('#listings').appendChild($li);
+  ].forEach($element => $card.appendChild($element));
+  $card.classList.add('card-body');
+  document.querySelector('.card').appendChild($card);
+  return $card;
 }
 
 function getImage(img) {
@@ -158,19 +166,22 @@ function getImage(img) {
 }
 
 function getAddress(street) {
-  return getElement('span', street);
+  const $cardInfo = document.createElement('h5');
+  $cardInfo.classList.add('card-title');
+  $cardInfo.textContent = street
+  return $cardInfo
 }
 
 function getBeds(beds) {
-  return getElement('p', beds);
+  return getElement('p', `${beds} Beds`);
 }
 
 function getBaths(baths) {
-  return getElement('p', baths);
+  return getElement('p', `${baths} Baths`);
 }
 
 function getPrice(price) {
-  return getElement('p', price);
+  return getElement('p', `$${price}`);
 }
 
 function getElement(tagName, text) {
@@ -178,11 +189,4 @@ function getElement(tagName, text) {
   const $text = document.createTextNode(text);
   $element.appendChild($text);
   return $element;
-}
-
-function createItem(listing) {
-  const $li = document.createElement('li');
-  $li.classList.add('card');
-  $li.textContent = listing.name;
-  return $li;
 }
