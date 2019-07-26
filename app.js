@@ -94,6 +94,18 @@ let searchArea = {
   }
 }
 
+let beginDraw = new L.Control.Coordinates();
+beginDraw.addTo(map);
+map.on('mousedown', (e => {
+  beginDraw.setCoordinates(e);
+}));
+
+let endDraw = new L.Control.Coordinates();
+endDraw.addTo(map);
+map.on('mouseup', (e => {
+  endDraw.setCoordinates(e);
+}));
+
 map.on(L.Draw.Event.CREATED, (e => {
   let type = e.layerType;
   let layer = e.layer;
@@ -118,28 +130,59 @@ function filterResults() {
         .bindPopup(listings[i].address[0].street)
         .openPopup()
         .addTo(map)
-      const $address = document.getElementById('address')
-      $address.innerText = listings[i].address[0].street;
-      console.log($address.innerText)
+      let listing = listings[i]
+      getListingDetails(listing)
+      // const $address = document.getElementById('address')
+      // $address.innerText = listings[i].address[0].street;
+      // console.log($address.innerText)
     }
   }
 }
 
-let beginDraw = new L.Control.Coordinates();
-beginDraw.addTo(map);
-map.on('mousedown', (e => {
-  beginDraw.setCoordinates(e);
-}));
-
-let endDraw = new L.Control.Coordinates();
-endDraw.addTo(map);
-map.on('mouseup', (e => {
-  endDraw.setCoordinates(e);
-}));
-
-function createItem(item) {
+function getListingDetails(listing) {
   const $li = document.createElement('li');
-  $li.classList.add('item');
-  $li.textContent = item.name;
+  const $elements = [
+    getImage(listing.img),
+    getAddress(listing.address[0].street),
+    getBeds(listing.beds),
+    getBaths(listing.baths),
+    getPrice(listing.price)
+  ].forEach($element => $li.appendChild($element));
+  document.querySelector('#listings').appendChild($li);
+}
+
+function getImage(img) {
+  const $image = document.createElement('img');
+  $image.src = img;
+  return $image;
+}
+
+function getAddress(street) {
+  return getElement('span', street);
+}
+
+function getBeds(beds) {
+  return getElement('p', beds);
+}
+
+function getBaths(baths) {
+  return getElement('p', baths);
+}
+
+function getPrice(price) {
+  return getElement('p', price);
+}
+
+function getElement(tagName, text) {
+  const $element = document.createElement(tagName);
+  const $text = document.createTextNode(text);
+  $element.appendChild($text);
+  return $element;
+}
+
+function createItem(listing) {
+  const $li = document.createElement('li');
+  $li.classList.add('card');
+  $li.textContent = listing.name;
   return $li;
 }
