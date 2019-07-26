@@ -1,3 +1,5 @@
+const app = document.getElementById('listings');
+
 const home = [39.759541, -104.999107];
 const work = [39.760000, -104.999200];
 let map = L.map('map').setView(home, 17);
@@ -130,33 +132,43 @@ function filterResults() {
         .bindPopup(listings[i].address[0].street)
         .openPopup()
         .addTo(map)
-      let listing = listings[i]
-      getListingDetails(listing)
     }
   }
+  listings.map(createLazyCard).map(node => app.appendChild(node));
+}
+
+function createLazyCard(listing) {
+  const template = document.querySelector('.property.card');
+  const card = template.cloneNode(true);
+  card.classList.remove('template');
+  // Update cloned nodes fields
+  card.querySelector('.card-title').textContent = listing.address[0].street;
+  card.querySelector('.card-price').textContent = new Intl.NumberFormat().format(listing.price);
+  // card.querySelector('.address').textContent = address
+  console.log('card', card);
+  return card;
 }
 
 function getListingDetails(listing) {
   const $li = document.createElement('li');
   $li.classList.add('card');
-  const $cardImage = [
-    getImage(listing.img)
+  const $elements = [
+    setImage(),
+    getImage(listing.img),
+    getAddress(listing.address[0].street),
+    getPrice(listing.price),
+    getBedsBaths(listing.beds, listing.baths),
+    getSqft(listing.sqft)
   ].forEach($element => $li.appendChild($element));
   document.querySelector('#listings').appendChild($li);
-  createBlock(listing);
+  // createBlock(listing);
 }
 
-function createBlock(listing) {
-  const $card = document.createElement('div');
-  const $elements = [
-    getAddress(listing.address[0].street),
-    getBeds(listing.beds),
-    getBaths(listing.baths),
-    getPrice(listing.price)
-  ].forEach($element => $card.appendChild($element));
-  $card.classList.add('card-body');
-  document.querySelector('.card').appendChild($card);
-  return $card;
+function setImage() {
+  const $imageBlock = document.createElement('div');
+  // const $imageBlock = document.createElement('img');
+  $imageBlock.classList.add('image-container');
+  document.querySelector('#img').appendChild($imageBlock);
 }
 
 function getImage(img) {
@@ -166,21 +178,23 @@ function getImage(img) {
 }
 
 function getAddress(street) {
-  const $cardInfo = document.createElement('h5');
+  const $cardInfo = document.createElement('h4');
   $cardInfo.classList.add('card-title');
   $cardInfo.textContent = street
   return $cardInfo
 }
 
-function getBeds(beds) {
-  return getElement('p', `${beds} Beds`);
+function getBedsBaths(beds, baths) {
+  return getElement('p', `${beds} Beds - ${baths} Baths`);
 }
 
-function getBaths(baths) {
-  return getElement('p', `${baths} Baths`);
+function getSqft(sqft) {
+  sqft = new Intl.NumberFormat().format(sqft)
+  return getElement('p', `${sqft} Sq. Ft.`);
 }
 
 function getPrice(price) {
+  price = new Intl.NumberFormat().format(price)
   return getElement('p', `$${price}`);
 }
 

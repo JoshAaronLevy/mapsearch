@@ -19,6 +19,7 @@
 </head>
 
 <body>
+  <div id="app"></div>
   <header class="navbar sticky-top paddings-0">
     <div class="logo">
       <a href="./index.html" class="h1 mb-0">Map Search</a>
@@ -31,16 +32,15 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <h4>Listings</h4>
+      <h3 class="listing-title">Listings</h3>
       <ul id="listings" class="property-list">
-        <!-- <li id="property" class="property card">
-          <img class="card-img-top" src="https://vo-mapsearch.s3-us-west-2.amazonaws.com/house-1.png" alt="Card image cap">
+        <li id="property" class="property card template">
+          <img class="card-img-top" src="" alt="">
           <div class="card-body">
             <h5 id="address" class="card-title"></h5>
-            <p class="card-text"></p>
-            <a href="#" class="btn btn-sm btn-primary"></a>
+            <p class="card-price"></p>
           </div>
-        </li> -->
+        </li>
       </ul>
     </div>
   </div>
