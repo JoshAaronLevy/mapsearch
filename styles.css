@@ -169,7 +169,7 @@ Map
 
 .map {
   height: 600px;
-  width: 800px;
+  width: 90%;
 }
 
 /*------------------------------------
@@ -247,7 +247,8 @@ Coordinate Log
 }
 
 .card img {
-  width: 25% !important;
+  width: 150px !important;
+  height: 150px !important;
 }
 
 .card-body p {

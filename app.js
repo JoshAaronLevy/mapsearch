@@ -129,7 +129,7 @@ function filterResults() {
       filteredListings.push(listings[i])
       let markerPosition = [listings[i].lat, listings[i].lon]
       L.marker(markerPosition)
-        .bindPopup(listings[i].address[0].street)
+        .bindPopup(`${listings[i].id}: ${listings[i].address[0].street}`)
         .openPopup()
         .addTo(map)
     }
@@ -141,66 +141,11 @@ function createLazyCard(listing) {
   const template = document.querySelector('.property.card');
   const card = template.cloneNode(true);
   card.classList.remove('template');
-  // Update cloned nodes fields
-  card.querySelector('.card-title').textContent = listing.address[0].street;
-  card.querySelector('.card-price').textContent = new Intl.NumberFormat().format(listing.price);
-  // card.querySelector('.address').textContent = address
+  card.querySelector('.card-img-top').src = listing.img;
+  card.querySelector('.card-title').textContent = `${listing.id}: ${listing.address[0].street}`;
+  card.querySelector('.card-price').textContent = '$' + new Intl.NumberFormat().format(listing.price);
+  card.querySelector('.card-beds-baths').textContent = `${listing.beds} Beds - ${listing.baths} Baths`;
+  card.querySelector('.card-sqft').textContent = new Intl.NumberFormat().format(listing.sqft) + ' ' + 'Sq. Ft.';
   console.log('card', card);
   return card;
-}
-
-function getListingDetails(listing) {
-  const $li = document.createElement('li');
-  $li.classList.add('card');
-  const $elements = [
-    setImage(),
-    getImage(listing.img),
-    getAddress(listing.address[0].street),
-    getPrice(listing.price),
-    getBedsBaths(listing.beds, listing.baths),
-    getSqft(listing.sqft)
-  ].forEach($element => $li.appendChild($element));
-  document.querySelector('#listings').appendChild($li);
-  // createBlock(listing);
-}
-
-function setImage() {
-  const $imageBlock = document.createElement('div');
-  // const $imageBlock = document.createElement('img');
-  $imageBlock.classList.add('image-container');
-  document.querySelector('#img').appendChild($imageBlock);
-}
-
-function getImage(img) {
-  const $image = document.createElement('img');
-  $image.src = img;
-  return $image;
-}
-
-function getAddress(street) {
-  const $cardInfo = document.createElement('h4');
-  $cardInfo.classList.add('card-title');
-  $cardInfo.textContent = street
-  return $cardInfo
-}
-
-function getBedsBaths(beds, baths) {
-  return getElement('p', `${beds} Beds - ${baths} Baths`);
-}
-
-function getSqft(sqft) {
-  sqft = new Intl.NumberFormat().format(sqft)
-  return getElement('p', `${sqft} Sq. Ft.`);
-}
-
-function getPrice(price) {
-  price = new Intl.NumberFormat().format(price)
-  return getElement('p', `$${price}`);
-}
-
-function getElement(tagName, text) {
-  const $element = document.createElement(tagName);
-  const $text = document.createTextNode(text);
-  $element.appendChild($text);
-  return $element;
 }
