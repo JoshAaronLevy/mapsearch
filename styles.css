@@ -222,6 +222,10 @@ Coordinate Log
   display: flex;
 }
 
+.property-list {
+  list-style-type: none;
+}
+
 .card {
   display: flex;
   margin-top: 50px;

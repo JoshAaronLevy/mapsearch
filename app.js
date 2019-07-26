@@ -118,6 +118,9 @@ function filterResults() {
         .bindPopup(listings[i].address[0].street)
         .openPopup()
         .addTo(map)
+      const $address = document.getElementById('address')
+      $address.innerText = listings[i].address[0].street;
+      console.log($address.innerText)
     }
   }
 }
@@ -133,3 +136,10 @@ endDraw.addTo(map);
 map.on('mouseup', (e => {
   endDraw.setCoordinates(e);
 }));
+
+function createItem(item) {
+  const $li = document.createElement('li');
+  $li.classList.add('item');
+  $li.textContent = item.name;
+  return $li;
+}
