@@ -109,15 +109,7 @@ map.on('mouseup', (e => {
   endDraw.setCoordinates(e);
 }));
 
-map.on('draw:deleted', function (e) {
-  var layers = e.layers;
-  filteredListings = [];
-  console.log(e);
-  console.log(layers);
-});
-
 map.on(L.Draw.Event.CREATED, (e => {
-  console.log(e);
   let type = e.layerType;
   let layer = e.layer;
   editableLayers.addLayer(layer);
@@ -142,6 +134,7 @@ function filterResults() {
         .addTo(map)
     }
   }
+  listings = filteredListings
   listings.map(createLazyCard).map(node => app.appendChild(node));
 }
 
@@ -154,6 +147,5 @@ function createLazyCard(listing) {
   card.querySelector('.card-price').textContent = '$' + new Intl.NumberFormat().format(listing.price);
   card.querySelector('.card-beds-baths').textContent = `${listing.beds} Beds - ${listing.baths} Baths`;
   card.querySelector('.card-sqft').textContent = new Intl.NumberFormat().format(listing.sqft) + ' ' + 'Sq. Ft.';
-  console.log('card', card);
   return card;
 }

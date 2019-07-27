@@ -25,32 +25,34 @@
       <a href="./index.html" class="h1 mb-0">Virtual Office Map Search!</a>
     </div>
   </header>
-  <div class="col-sm-12 flex-view">
-    <div class="col-sm-8">
-      <div class="map-container">
-        <div id="map" class="map"></div>
+  <div class="flex-body-content">
+    <div class="col-sm-12 flex-view">
+      <div class="col-sm-8">
+        <div class="map-container">
+          <div id="map" class="map"></div>
+        </div>
+      </div>
+      <div class="col-sm-4 listing-results">
+        <h2 class="listing-title">Listings</h2>
+        <ul id="listings" class="property-list">
+          <li id="property" class="property card template">
+            <img class="card-img-top" src="" alt="">
+            <div class="card-body">
+              <h4 id="address" class="card-title"></h4>
+              <p class="card-price"></p>
+              <p class="card-beds-baths"></p>
+              <p class="card-sqft"></p>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="col-sm-4 listing-results">
-      <h2 class="listing-title">Listings</h2>
-      <ul id="listings" class="property-list">
-        <li id="property" class="property card template">
-          <img class="card-img-top" src="" alt="">
-          <div class="card-body">
-            <h4 id="address" class="card-title"></h4>
-            <p class="card-price"></p>
-            <p class="card-beds-baths"></p>
-            <p class="card-sqft"></p>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <footer class="footer">
+      <p class="footer-copy">
+        Copyright &copy; 2019 Hillside Software
+      </p>
+    </footer>
   </div>
-  <footer class="footer">
-    <p class="footer-copy">
-      Copyright &copy; 2019 Hillside Software
-    </p>
-  </footer>
   <script src="/app.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

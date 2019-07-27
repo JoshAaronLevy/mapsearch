@@ -19,6 +19,12 @@ body {
   background-color: #fff;
 }
 
+.flex-body-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 a {
   color: #AE0001;
   outline: none;
@@ -127,7 +133,7 @@ Navigation
 .navbar {
   display: flex;
   width: 100%;
-  min-height: 100px;
+  min-height: 75px;
   background-color: #FFFFFF;
   box-shadow: 2px 2px 1px #333;
 }
@@ -140,7 +146,7 @@ Navigation
 }
 
 .logo a {
-  font-size: 58px;
+  font-size: 46px;
   font-family: 'Bangers', cursive;
   color: #AE0001;
 }
@@ -177,13 +183,17 @@ Footer
 ------------------------------------*/
 
 .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   background-color: #222;
   padding-left: 100px;
   padding-right: 100px;
   align-items: stretch;
-  height: 90px;
+  height: 60px;
 }
 
 .footer-copy {
