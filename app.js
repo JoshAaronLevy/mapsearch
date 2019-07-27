@@ -21,7 +21,7 @@ let MyCustomMarker = L.Icon.extend({
 });
 
 let drawControl = new L.Control.Draw({
-  position: 'topleft',
+  position: 'topright',
   draw: {
     polyline: false,
     polygon: false,
@@ -37,7 +37,8 @@ let drawControl = new L.Control.Draw({
   edit: {
     featureGroup: editableLayers,
     edit: false,
-    save: false
+    save: false,
+    delete: true
   }
 });
 map.addControl(drawControl);
@@ -108,14 +109,21 @@ map.on('mouseup', (e => {
   endDraw.setCoordinates(e);
 }));
 
+map.on('draw:deleted', function (e) {
+  var layers = e.layers;
+  filteredListings = [];
+  console.log(e);
+  console.log(layers);
+});
+
 map.on(L.Draw.Event.CREATED, (e => {
+  console.log(e);
   let type = e.layerType;
   let layer = e.layer;
+  editableLayers.addLayer(layer);
   if (type === 'marker') {
     layer.bindPopup('Marker');
   }
-  editableLayers.removeLayer(layer);
-  editableLayers.addLayer(layer);
   searchArea.lat.west = layer._bounds._southWest.lat;
   searchArea.lat.east = layer._bounds._northEast.lat;
   searchArea.lon.north = layer._bounds._northEast.lng;

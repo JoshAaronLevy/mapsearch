@@ -169,7 +169,7 @@ Map
 
 .map {
   height: 600px;
-  width: 90%;
+  width: 95%;
 }
 
 /*------------------------------------
@@ -220,6 +220,10 @@ Coordinate Log
 
 .template {
   display: none;
+}
+
+.listing-results {
+  padding-left: 0px !important;
 }
 
 .listing-title {
