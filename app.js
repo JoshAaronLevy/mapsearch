@@ -2,7 +2,7 @@ const app = document.getElementById('listings');
 
 const home = [39.759541, -104.999107];
 const work = [39.760000, -104.999200];
-let map = L.map('map').setView(home, 17);
+let map = new L.map('map').setView(home, 16);
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   attribution:
     '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -123,16 +123,23 @@ map.on(L.Draw.Event.CREATED, (e => {
   filterResults();
 }));
 
+map.on('draw:deleted', function (e) {
+  window.location.reload(e);
+});
+
 function filterResults() {
   for (let i = 0; i < listings.length; i++) {
+    let markerPosition = [listings[i].lat, listings[i].lon]
     if ((listings[i].lat > searchArea.lat.west && listings[i].lat < searchArea.lat.east) && (listings[i].lon < searchArea.lon.north && listings[i].lon > searchArea.lon.south)) {
       filteredListings.push(listings[i])
-      let markerPosition = [listings[i].lat, listings[i].lon]
       L.marker(markerPosition)
         .bindPopup(`${listings[i].id}: ${listings[i].address[0].street}`)
         .openPopup()
         .addTo(map)
+    } else {
+      markerPosition = [];
     }
+    console.log(markerPosition);
   }
   listings = filteredListings
   listings.map(createLazyCard).map(node => app.appendChild(node));
