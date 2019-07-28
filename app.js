@@ -152,6 +152,7 @@ function createLazyCard(listing) {
   const card = template.cloneNode(true);
   const sidebarTrigger = document.querySelector('.sidebar.sidebar-left.leaflet-touch');
   const sidebarContent = document.querySelector('#home');
+  const sidebarTabs = document.querySelector('#sidebar-tab-control');
   card.classList.remove('template');
   card.querySelector('.card-id').textContent = listing.id;
   card.querySelector('.card-img-top').src = listing.img;
@@ -160,6 +161,7 @@ function createLazyCard(listing) {
   card.querySelector('.card-beds-baths').textContent = `${listing.beds} Beds - ${listing.baths} Baths`;
   card.querySelector('.card-sqft').textContent = new Intl.NumberFormat().format(listing.sqft) + ' ' + 'Sq. Ft.';
   sidebarTrigger.classList.remove('collapsed');
+  sidebarTabs.classList.add('active');
   sidebarContent.classList.add('active');
   return card;
 }
