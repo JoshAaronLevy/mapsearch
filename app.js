@@ -8,6 +8,8 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+var sidebar = L.control.sidebar('sidebar').addTo(map);
+
 let editableLayers = new L.FeatureGroup();
 map.addLayer(editableLayers);
 
@@ -148,11 +150,16 @@ function filterResults() {
 function createLazyCard(listing) {
   const template = document.querySelector('.property.card');
   const card = template.cloneNode(true);
+  const sidebarTrigger = document.querySelector('.sidebar.sidebar-left.leaflet-touch');
+  const sidebarContent = document.querySelector('#home');
   card.classList.remove('template');
+  card.querySelector('.card-id').textContent = listing.id;
   card.querySelector('.card-img-top').src = listing.img;
-  card.querySelector('.card-title').textContent = `${listing.id}: ${listing.address[0].street}`;
+  card.querySelector('.card-title').textContent = listing.address[0].street;
   card.querySelector('.card-price').textContent = '$' + new Intl.NumberFormat().format(listing.price);
   card.querySelector('.card-beds-baths').textContent = `${listing.beds} Beds - ${listing.baths} Baths`;
   card.querySelector('.card-sqft').textContent = new Intl.NumberFormat().format(listing.sqft) + ' ' + 'Sq. Ft.';
+  sidebarTrigger.classList.remove('collapsed');
+  sidebarContent.classList.add('active');
   return card;
 }

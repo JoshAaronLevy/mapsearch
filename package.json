@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "lite-server",
-    "deploy": "rm -rf .firebase/* && firebase deploy",
+    "deploy": "rm -rf .firebase/* && firebase deploy && gac 'Deployed to Firebase' && gp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Josh Levy",
