@@ -7,91 +7,79 @@
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   <script src="https://kit.fontawesome.com/9ca174fa99.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/leaflet-sidebar.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
-    integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
-    crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
-    integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
-    crossorigin=""></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"
-    integrity="sha256-XzD3RpaHPv7lzX9qt+2n1j5cWj48O24KsgaGYpKN8x8=" crossorigin="anonymous" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"
-    integrity="sha256-siofc4Uwjlra3YWkwthOn8Uj69cNN4aMug/iOHNiRgs=" crossorigin="anonymous"></script>
-  <script src="/assets/js/coords.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" crossorigin="anonymous" />
+  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js" crossorigin="anonymous"></script>
+  <script src="/assets/js/coords.js"></script>
   <link rel="icon" href="./favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-  <div id="app"></div>
-  <header class="navbar paddings-0">
-    <div class="logo">
-      <a href="./index.html" class="h1 mb-0">Map Search</a>
-    </div>
-  </header>
-  <div>
-    <div class="col-sm-12 mt-20">
-      <div class="col-sm-12">
-        <div id="sidebar" class="sidebar collapsed">
-          <!-- Nav tabs -->
-          <div class="sidebar-tabs">
-            <ul role="tablist">
-              <li id="sidebar-tab-control">
-                <a href="#home" role="tab">
-                  <i class="fas fa-home"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <!-- Tab panes -->
-          <div class="sidebar-content">
-            <div class="sidebar-pane" id="home">
-              <h1 class="sidebar-header">
-                Listings
-                <span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
-              </h1>
-              <div class="col-sm-12 listing-results">
-                <ul id="listings" class="property-list">
-                  <li id="property" class="property card template">
-                    <h4 class="card-id"></h4>
-                    <img class="card-img-top" src="" alt="">
-                    <div class="card-body">
-                      <h4 id="address" class="card-title"></h4>
-                      <p class="card-price"></p>
-                      <p class="card-beds-baths"></p>
-                      <p class="card-sqft"></p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+  <div id="app">
+    <!-- <header class="navbar paddings-0">
+      <div class="logo">
+        <a href="./index.html" class="h1 mb-0">Map Search</a>
+      </div>
+    </header> -->
+    <main>
+      <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <div class="sidebar-tabs">
+          <ul role="tablist">
+            <li id="sidebar-tab-control">
+              <a href="#home" role="tab">
+                <i class="fas fa-home"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- Tab panes -->
+        <div class="sidebar-content">
+          <div class="sidebar-pane" id="home">
+            <h1 class="sidebar-header">
+              Listings
+              <span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
+            </h1>
+            <div class="col-sm-12 listing-results">
+              <ul id="listings" class="property-list">
+                <li id="property" class="property card template">
+                  <h4 class="card-id"></h4>
+                  <img class="card-img-top" src="" alt="">
+                  <div class="card-body">
+                    <h4 id="address" class="card-title"></h4>
+                    <p class="card-price"></p>
+                    <p class="card-beds-baths"></p>
+                    <p class="card-sqft"></p>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-        <div id="map" class="sidebar-map map"></div>
-        <div class="map-container">
-        </div>
       </div>
-    </div>
+      <div id="map" class="sidebar-map map"></div>
+    </main>
     <footer class="footer">
       <p class="footer-copy">
         Copyright &copy; 2019 Hillside Software - v2.0
       </p>
     </footer>
   </div>
-  <script src="/assets/js/leaflet-sidebar.js" crossorigin="anonymous"></script>
+
+  <script src="/assets/js/leaflet-sidebar.js"></script>
   <script src="/app.js"></script>
+  <script src="/data-loader.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous">
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous">
   </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous">
   </script>
+
 </body>
 
 </html>

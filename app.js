@@ -1,5 +1,9 @@
 const app = document.getElementById('listings');
 
+setTimeout(() => {
+  loadServerPins()
+}, 1250);
+
 const home = [39.759541, -104.999107];
 const work = [39.760000, -104.999200];
 let map = new L.map('map').setView(home, 16);
@@ -126,9 +130,24 @@ map.on(L.Draw.Event.CREATED, (e => {
 }));
 
 map.on('draw:deleted', function (e) {
-  window.location.reload(e);
+  console.log('Deleted:', arguments)
+  // window.location.reload(e);
 });
 
+function loadServerPins() {
+  return getServerData()
+    .then(listings => {
+      return listings.map((l, index) => {
+        if (index === 0) {
+          map.panTo([l.lat, l.lon]);
+        }
+        return L.marker([l.lat, l.lon])
+          .bindPopup(`${l.ln}: ${l.address}`)
+          .openPopup()
+          .addTo(map)
+      })
+    })
+}
 function filterResults() {
   for (let i = 0; i < listings.length; i++) {
     let markerPosition = [listings[i].lat, listings[i].lon]
